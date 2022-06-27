@@ -11,6 +11,7 @@
 [ \t\n]+             { /* skip */ }
 "#define"		{return DEFINE;}
 ","			{return COMMA;}
+"macro_call"	         {return MACRO_INIT;}
 
 "int"                { yylval.i = INT;  return _TYPE; }
 "unsigned"           { yylval.i = UINT; return _TYPE; }

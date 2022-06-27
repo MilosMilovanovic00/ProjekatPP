@@ -49,8 +49,7 @@
 
 %token DEFINE
 %token COMMA
-//%type <s> macro_exps
-
+%token MACRO_INIT
 %type <i> num_exp exp literal
 %type <i> function_call argument rel_exp if_part 
 
@@ -99,17 +98,14 @@ macro_prom
 	}
   ;  
 
-macro_func
-  : DEFINE _ID _LPAREN _ID _RPAREN macro_exps
+macro_func  
+  : DEFINE MACRO_INIT _ID _LPAREN _ID _RPAREN num_exp
 	{
-	if(lookup_symbol($2, MACRO_FUN) == NO_INDEX){
-   		macro_idx=insert_symbol($2, MACRO_VAR,NO_TYPE, NO_ATR, NO_ATR);
-	insert_symbol($4, PAR, NO_ATR, 1, NO_ATR);
-        set_atr1(macro_idx, 1);
+	if(lookup_symbol($3, MACRO_FUN) == NO_INDEX){
+   		macro_idx=insert_symbol($3, MACRO_VAR,NO_TYPE, NO_ATR, NO_ATR); //atr1 ce da bude koju vrednost je stavljena
 	}
 	else 
-		err("redefinition of '%s'", $2);
-	
+		err("redefinition of '%s'", $3);
 	}
   ;
 
@@ -232,17 +228,6 @@ num_exp
       }
   ;
 
-macro_exps
-  : macro_exp 
-  | macro_exps _AROP macro_exp
-  ;
-
-macro_exp
-  : _ID
-  | literal
-  | _LPAREN macro_exps _RPAREN
-  ; 
-
 exp
   : literal
 
@@ -266,7 +251,6 @@ exp
   | _LPAREN num_exp _RPAREN
       { $$ = $2; }
  
-
 ;
 
 

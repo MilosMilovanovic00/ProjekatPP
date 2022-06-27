@@ -62,7 +62,8 @@ extern int yydebug;
     _RELOP = 272,
     DEFINE = 273,
     COMMA = 274,
-    ONLY_IF = 275
+    MACRO_INIT = 275,
+    ONLY_IF = 276
   };
 #endif
 
@@ -76,7 +77,7 @@ union YYSTYPE
   int i;
   char *s;
 
-#line 80 "micko.tab.h" /* yacc.c:1909  */
+#line 81 "micko.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
