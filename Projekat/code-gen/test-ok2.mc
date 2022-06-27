@@ -3,9 +3,9 @@
 #define macro_call mul(b) b+b 
 int main() {
     int state;
-    uint x;
+    int x;
     x=5;
     state = a+a;
     return state;
 }
-}
+
