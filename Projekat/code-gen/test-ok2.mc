@@ -1,4 +1,4 @@
-//RETURN: 25
+//RETURN: 40
 #define a 20
 #define macro_call mul(b) b+b 
 int main() {
